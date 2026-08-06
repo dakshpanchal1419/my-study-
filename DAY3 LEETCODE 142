@@ -1,0 +1,22 @@
+//FIND THE STARTING NODE OF A CYCLE 
+// SLOW AND FAST APPROACH ALONG WITH / CREATION OF START POINTER TO GET START NODE (ALSO RESET START POSITION)
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        ListNode * slow = head ;
+         ListNode * fast = head ;
+         while(fast!=nullptr && fast->next != NULL){
+            slow = slow->next ;
+            fast= fast->next->next ;
+             if (slow==fast){   //cycle detect
+                slow= head ;
+                 while(slow!=fast){
+                    slow = slow->next ;
+                    fast= fast->next ;
+                 }
+                 return slow ; 
+              } 
+         } 
+         return NULL;
+         }
+};
