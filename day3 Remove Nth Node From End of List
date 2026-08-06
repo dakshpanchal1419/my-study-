@@ -1,0 +1,21 @@
+// use TWO POINTER GAP TECHNIQUE (FAST AND SLOW APPROACH , DUMMY POINTER APPROACH)
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode *dummy = new ListNode(-1);
+        dummy->next= head ;
+        ListNode *slow =dummy;
+        ListNode *fast =dummy;
+        for (int i =1 ;i<=n+1 ; i++){
+            fast = fast->next;
+        }
+        while (fast!=NULL){
+            slow= slow->next ;
+            fast= fast->next;
+        }
+        ListNode* deletenode = slow->next;
+        slow->next=deletenode->next;
+        delete deletenode;
+        return dummy->next ;
+    }
+};
