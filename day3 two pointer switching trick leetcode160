@@ -1,0 +1,32 @@
+// A: 4 → 1 → 8 → 4 → 5
+// B: 5 → 6 → 1 → 8 → 4 → 5  
+// here in this dry run , most of the people confuse that 1 is also match 
+//   ,why it is not intersect point , but main point is that we check pointer 
+//     ,not pointer value ,address is checking 
+
+
+//  intersect = when two pointers references the same node in memory
+
+ListNode* getIntersectionNode(ListNode* headA, ListNode* headB)
+{
+    if(headA == NULL || headB == NULL)
+        return NULL;
+
+    ListNode* pA = headA;
+    ListNode* pB = headB;
+
+    while(pA != pB)
+    {
+        if(pA == NULL)
+            pA = headB;
+        else
+            pA = pA->next;
+
+        if(pB == NULL)
+            pB = headA;
+        else
+            pB = pB->next;
+    }
+
+    return pA;
+}
