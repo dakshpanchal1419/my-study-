@@ -1,0 +1,63 @@
+/*
+Complete Algorithm
+Step 1
+Find middle using slow/fast.
+Step 2
+Reverse the second half.
+Step 3
+Compare first half and reversed second half.
+Step 4 (Optional but Recommended)
+Reverse the second half again to restore the original list.
+Many interviewers appreciate restoring the input structure if the problem doesn't forbid it.
+
+PSUEDOCODE
+Find middle
+Reverse second half
+Compare both halves
+If mismatch
+    return false
+Restore second half (optional)
+return true
+*/
+class Solution {
+public:
+
+    bool isPalindrome(ListNode* head) {
+
+///deal with edge case when only 1 element or no element
+    if(head == NULL || head->next == NULL)
+    return true;
+
+
+       ListNode* slow =head;
+       ListNode* fast =head;
+       //middle element 
+        while(fast->next != NULL && fast->next->next != NULL){
+           slow =  slow->next;
+           fast = fast->next->next;
+        }
+        // reverse the second half
+        ListNode* prev=NULL;
+        ListNode* current =slow->next;
+        while (current!=NULL){
+            ListNode* Next= current->next;
+            current->next=prev;
+            prev=current;
+            current=Next;
+        }
+        // compare the both halves
+        ListNode* temp1 = head;
+        ListNode* temp2= prev;
+        
+       while(temp2 != NULL)
+{
+    if(temp1->val != temp2->val)
+        return false;
+
+    temp1 = temp1->next;
+    temp2 = temp2->next;
+    }
+     return true;
+       
+    }
+};
