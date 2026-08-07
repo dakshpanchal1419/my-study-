@@ -32,6 +32,37 @@
 // };
 
 
+// -----NOW MY APPROACH IS UPDATED ,REMOVE THE TEMP AND ALSO INTIALLIXE NEW PREV------
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        ListNode* current =head ;
+       ListNode* dummy = new ListNode(-1);
+       dummy->next =head;
+        ListNode* prev = dummy;
+        //edge case of null ll 
+        if (current==NULL) {
+            return NULL;
+        } // loop untill complete tranverse 
+        while (current!=NULL && current->next!=NULL){
+            if (current->val == current->next->val){
+                //skip the duplicates
+               int duplicatevalue = current->val ;
+                while  (current != NULL && current->val == duplicatevalue){  
+                    current = current->next ; 
+                }
+                 prev->next = current ;
+            }
+
+            else {
+               prev =current ;
+               current= current ->next;
+              }
+        }
+        return dummy->next;
+    }
+    
+};
 
 
 // RIGHGT APPROACH BBY GPT 
