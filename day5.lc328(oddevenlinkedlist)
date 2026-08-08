@@ -1,0 +1,25 @@
+  // use three  pointer odd even and evenahead to solve this problem , seprate the two odd chains and even chians and odd reconnect to even chain
+     
+     
+     class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {
+        if (head ==NULL || head->next == NULL){
+            return head ;
+        }
+        ListNode* odd =head ;
+        ListNode* even = odd->next ;
+        ListNode* evenhead = even ;
+         
+         while ( even!=NULL && even->next!=NULL ){
+            odd->next =even->next ;
+            odd = odd->next;
+
+            even->next=odd->next;
+            even =even->next ;
+         }
+         odd->next =evenhead;
+          return head;
+    }
+   
+};
