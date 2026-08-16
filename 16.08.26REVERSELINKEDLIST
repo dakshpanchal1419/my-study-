@@ -12,9 +12,8 @@
             listNode * newhead =  new listNode ();
             listNode * newtail = new listNode ();
 int length =0 ;
-if (head==nullptr){
-retrun ;
-}
+if (head == nullptr || head->next == nullptr)
+    return head;
             while (current ->next !=nullptr){
                 current = current->next ;
                 kth= kth->next ;
