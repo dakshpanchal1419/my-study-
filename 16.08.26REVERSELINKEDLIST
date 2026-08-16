@@ -1,0 +1,41 @@
+//self solution and some updates  
+  class solution  {
+ public : 
+           listNode *rotate (listNode * head , int k){
+            listNode * dummy = new listNode ();
+             dummy ->next = head ;
+              listNode * prev = dummy ;
+               listNode * kth = dummy ;
+            listNode * current =head ;
+            listNode * oldhead = head ;
+            listNode * oldtail = new listNode ();
+            listNode * newhead =  new listNode ();
+            listNode * newtail = new listNode ();
+int length =0 ;
+            while (current ->next !=nullptr){
+                current = current->next ;
+                kth= kth->next ;
+                oldtail=kth->next ;
+                length++;
+              }      
+                k = k % length;                  /// very important line bcoz if k>length then loop do not exceute so we find remiander to
+                                                 ///    ( when n=5 , 7 times rotation is equal to  2 times rotation bcz 5 times it return same ll)
+              
+                                                        // length =n
+             for (int i =0 ; i < length-k ; i++) {    // n-k+1 = new head postion , point where break we need to rotate
+                prev = prev->next;
+                newtail= prev ;
+                newhead = prev->next   ;
+
+             }  
+             /// rotation work 
+            dummy->next  = newhead ;
+             oldtail->next = oldhead ;
+             newtail->next = NULL ;
+            return dummy->next;
+           }
+//optimal solution
+
+
+           
+}
