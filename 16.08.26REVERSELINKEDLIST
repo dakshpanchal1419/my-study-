@@ -40,7 +40,60 @@ return dummy->next ;
              newtail->next = NULL ;
             return dummy->next;
            }
-//optimal solution
+//bugs fixed by chatgpt , same style of solution but no bugs 
+
+class solution {
+public:
+    listNode *rotate(listNode *head, int k) {
+
+        if (head == nullptr || head->next == nullptr)
+            return head;
+
+        listNode *dummy = new listNode();
+        dummy->next = head;
+
+        listNode *prev = dummy;
+        listNode *kth = dummy;
+        listNode *current = head;
+        listNode *oldhead = head;
+
+        listNode *oldtail = nullptr;
+        listNode *newhead = nullptr;
+        listNode *newtail = nullptr;
+
+        int length = 1;
+
+        // find length and old tail
+        while (current->next != nullptr) {
+            current = current->next;
+            kth = kth->next;
+            length++;
+        }
+
+        oldtail = current;
+
+        // very important line
+        k = k % length;
+
+        // if no rotation is required
+        if (k == 0)
+            return head;
+
+        // find new tail and new head
+        for (int i = 0; i < length - k; i++) {
+            prev = prev->next;
+            newtail = prev;
+            newhead = prev->next;
+        }
+
+        // rotation work
+        dummy->next = newhead;
+        oldtail->next = oldhead;
+        newtail->next = nullptr;
+
+        return dummy->next;
+    }
+};
 
 
            
