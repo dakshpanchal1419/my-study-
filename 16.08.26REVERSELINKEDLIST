@@ -94,7 +94,8 @@ public:
         return dummy->next;
     }
 };
+          // solution by temproray circular linked list ;
 
 
-           
-}
+
+
