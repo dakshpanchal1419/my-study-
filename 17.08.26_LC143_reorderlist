@@ -1,0 +1,95 @@
+
+
+------KAFHI BUGS HAI ------
+-----APPROACH THODA GALAT HAI -------
+
+class Solution {
+public:
+    void reorderList(ListNode* head) {
+//Reverselist 
+//length of list 
+int count =0;
+    ListNode* reverselist =new ListNode (0);
+    ListNode* rhead = reverselist ;
+        ListNode* prev =NULL;
+        ListNode* current = head ;
+        while(current!=nullptr){
+            ListNode* next =current->next;
+            current->next =prev;
+            prev=current;
+            current=next;
+            count++ ;
+        }
+   current = head;
+        ListNode* dummy =new ListNode(0);  // same as current 
+      dummy->next = rhead;
+      ListNode* temp1 =dummy ;
+       
+ for (int i=0 ; i< count/2 ;i++) {
+     if (i%2!=0){ 
+        current->next =temp1 ;
+        temp1->next = current->next->next;
+      
+     }
+     current=current->next ;
+     temp1=temp1->next;
+ }
+return head;
+        
+    }
+};    
+
+
+
+------ MERI APPROACH KA, WITHOUT BUGS CHATGPT IMPORVE CODE------
+class Solution {
+public:
+    void reorderList(ListNode* head) {
+
+        // length of list
+        int count = 0;
+        ListNode* current = head;
+
+        while (current != nullptr) {
+            count++;
+            current = current->next;
+        }
+
+        // Reverse copy of original list
+        ListNode* reverselist = nullptr;
+        current = head;
+
+        while (current != nullptr) {
+            ListNode* newnode = new ListNode(current->val);
+            newnode->next = reverselist;
+            reverselist = newnode;
+
+            current = current->next;
+        }
+
+        // Reorder
+        current = head;
+        ListNode* rcurrent = reverselist;
+
+        for (int i = 0; i < count / 2; i++) {
+
+            // save next nodes
+            ListNode* next = current->next;
+            ListNode* rnext = rcurrent->next;
+
+            // take reverse node
+            current->next = rcurrent;
+
+            // connect back to original list
+            rcurrent->next = next;
+
+            current = next;
+            rcurrent = rnext;
+        }
+
+        // For odd length, terminate the list
+        if (current != nullptr) {
+            current->next = nullptr;
+        }
+    }
+};
