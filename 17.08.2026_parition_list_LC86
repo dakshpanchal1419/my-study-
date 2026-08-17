@@ -1,0 +1,30 @@
+new concept formation of two linked list small and large to the nodes into it and reconnect both together , 
+
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        ListNode* SmallHead =new ListNode (0);
+        ListNode* LargeHead =new ListNode (0);
+        
+        ListNode* small =SmallHead ;
+         ListNode* large = LargeHead ;
+          ListNode* current =head ;
+
+         while (current != nullptr){
+            if (current->val>=x){
+                large ->next =current ;
+                large =large->next ;
+            }
+            else {
+                small->next =current ;
+                small = small ->next ;
+            }
+            current = current->next ;
+         }
+         large->next =nullptr;
+         small->next =LargeHead->next ;
+         return SmallHead->next ;
+    }
+    
+
+};
