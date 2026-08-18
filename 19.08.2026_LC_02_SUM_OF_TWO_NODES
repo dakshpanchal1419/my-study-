@@ -1,0 +1,30 @@
+// FIRST APPROACH (MUCHHH  WERONG)
+
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode* list3 =new ListNode ();
+           ListNode* l3= list3;
+         ListNode* current1 =l1;
+         ListNode* current2 =l2;
+         while (current1!= nullptr && current2!=nullptr){
+               l3->val= current1->val +current2->val;
+               if (l3->val >9){
+                l3->val =0;
+                l3->next->val =current1->next->val +current2->next->val +1;
+                l3=l3->next;
+                current1=current1->next->next;
+                  current2=current2->next->next;
+               }
+               else{ 
+               l3->val= current1->val +current2->val;
+                l3=l3->next;
+                current1=current1->next;
+                  current2=current2->next;
+               }
+         }
+         return l3;
+
+
+    }
+};
