@@ -1,0 +1,22 @@
+-----dhruv approach---
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+         int result;
+         int n = size(nums);
+         int i =0;
+         sort(nums.begin(), nums.end()) ;
+        while (int i=0<n){
+           
+            if (nums[i]==nums[i+1]){
+                i=i+2 ;
+            }
+            else{
+                result =nums [i+2] ;
+                 i=i+2 ;
+            }
+        }
+return result;
+        
+    }
+};
