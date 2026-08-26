@@ -9,3 +9,28 @@
 //  ↓
 // resolve previous elements
 
+Create empty stack
+Create mapping
+
+For every element in nums2:
+
+    while stack is not empty
+          AND current is greater than stack.top():
+
+        stack.top() → current
+        pop stack
+
+    push current
+
+
+Remaining elements in stack:
+
+    their answer = -1
+
+
+Create final answer
+
+For every element in nums1:
+
+    retrieve its answer from mapping
+
